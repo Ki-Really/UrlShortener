@@ -71,7 +71,7 @@ func (s *Storage) SaveURL(urlToSave string, alias string) (int64, error) {
 	return id, nil
 }
 
-func (s *Storage) GetUrl(alias string) (string, error) {
+func (s *Storage) GetURL(alias string) (string, error) {
 	const op = "storage.sqlite.GetUrl"
 	stmt, err := s.db.Prepare("SELECT url FROM url WHERE alias = ?")
 
@@ -93,11 +93,11 @@ func (s *Storage) GetUrl(alias string) (string, error) {
 	return resUrl, nil
 }
 
-func (s *Storage) DeleteUrl(alias string) error {
+func (s *Storage) DeleteURL(alias string) error {
 	const op = "storage.sqlite.DeleteUrl"
 	stmt, err := s.db.Prepare("DELETE FROM url WHERE alias = ?")
-	if err!= nil{
-		return fmt.Errorf("%w",err)
+	if err != nil {
+		return fmt.Errorf("%w", err)
 	}
 	res, err := stmt.Exec(alias)
 	if err != nil {
